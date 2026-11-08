@@ -1,0 +1,391 @@
+:root {
+  --bg: #f4f5f9;
+  --surface: #ffffff;
+  --text: #1c2030;
+  --muted: #6b7185;
+  --border: #dde0ea;
+  --primary: #4458e8;
+  --primary-dark: #3345c4;
+  --danger: #d6293e;
+  --danger-bg: #fdecee;
+  --radius: 10px;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+h1 {
+  margin: 0 0 16px;
+  font-size: 1.6rem;
+}
+
+/* ---------- Layout ---------- */
+.app {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 20px 16px 48px;
+}
+
+/* ---------- Form controls ---------- */
+.input {
+  width: 100%;
+  min-height: 40px;
+  padding: 8px 10px;
+  font: inherit;
+  color: inherit;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.input:focus-visible,
+.btn:focus-visible,
+.tab:focus-visible,
+.task__check:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.input[aria-invalid='true'] {
+  border-color: var(--danger);
+}
+
+.btn {
+  min-height: 40px;
+  padding: 8px 14px;
+  font: inherit;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #eef0f6;
+}
+
+.btn--primary {
+  color: #fff;
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn--primary:hover {
+  background: var(--primary-dark);
+}
+
+.btn--ghost {
+  min-height: 32px;
+  padding: 4px 10px;
+  font-size: 0.875rem;
+  border-color: transparent;
+  background: transparent;
+  color: var(--muted);
+}
+
+.btn--danger:hover {
+  color: var(--danger);
+  background: var(--danger-bg);
+}
+
+.btn--danger-solid {
+  color: #fff;
+  background: var(--danger);
+  border-color: var(--danger);
+}
+
+.btn--danger-solid:hover {
+  background: #b81f32;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.error {
+  margin: 6px 0 0;
+  font-size: 0.85rem;
+  color: var(--danger);
+}
+
+/* ---------- Add form ---------- */
+.task-form {
+  padding: 14px;
+  margin-bottom: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.task-form__row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.task-form__row + .task-form__row {
+  margin-top: 10px;
+}
+
+/* ---------- Toolbar ---------- */
+.toolbar {
+  margin-bottom: 12px;
+}
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  background: #e6e8f0;
+  border-radius: var(--radius);
+}
+
+.tab {
+  flex: 1;
+  min-height: 36px;
+  font: inherit;
+  font-weight: 600;
+  color: var(--muted);
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.tab--active {
+  color: var(--text);
+  background: var(--surface);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 12%);
+}
+
+.toolbar__row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+  margin-top: 10px;
+}
+
+.toolbar__search {
+  flex: 2;
+}
+
+.field--inline {
+  flex: 1;
+}
+
+.counter {
+  margin: 10px 2px 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* ---------- Task list ---------- */
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.task {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.task__check {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin: 3px 0 0;
+  cursor: pointer;
+  accent-color: var(--primary);
+}
+
+.task__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.task__title {
+  display: block;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+  cursor: text;
+}
+
+.task--done .task__title {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.task__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  align-items: center;
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.task__actions {
+  display: flex;
+  flex: none;
+  gap: 2px;
+}
+
+.empty {
+  padding: 28px 12px;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* ---------- Badges ---------- */
+.badge {
+  padding: 2px 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 999px;
+}
+
+.badge--high {
+  color: #9a1f2f;
+  background: #fde3e6;
+}
+
+.badge--medium {
+  color: #8a5a00;
+  background: #fff0cc;
+}
+
+.badge--low {
+  color: #1f6b3a;
+  background: #dcf4e4;
+}
+
+.badge--overdue {
+  color: #fff;
+  background: var(--danger);
+}
+
+/* ---------- Loading / error ---------- */
+.state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 40px 16px;
+  text-align: center;
+  color: var(--muted);
+}
+
+.state--error {
+  color: var(--danger);
+}
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--border);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- Confirm dialog ---------- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgb(20 24 40 / 50%);
+}
+
+.dialog {
+  width: 100%;
+  max-width: 360px;
+  padding: 20px;
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 30px rgb(0 0 0 / 25%);
+}
+
+.dialog h2 {
+  margin: 0 0 8px;
+  font-size: 1.15rem;
+}
+
+.dialog p {
+  margin: 0 0 18px;
+  overflow-wrap: anywhere;
+  color: var(--muted);
+}
+
+.dialog__actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+/* ---------- Small phones (375px and below) ---------- */
+@media (max-width: 480px) {
+  .task {
+    flex-wrap: wrap;
+  }
+
+  .task__body {
+    flex-basis: calc(100% - 40px);
+  }
+
+  .task__actions {
+    flex-basis: 100%;
+    justify-content: flex-end;
+    padding-top: 4px;
+    border-top: 1px solid var(--border);
+  }
+
+  .toolbar__row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .task-form__row:last-of-type {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
